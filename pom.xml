@@ -48,7 +48,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.38</version>
+      <version>8.0.31</version>
     </dependency>
 
   </dependencies>
@@ -94,7 +94,7 @@
             <artifactId>heroku-maven-plugin</artifactId>
             <version>0.4.4</version>
             <configuration>
-                <jdkVersion>1.8</jdkVersion>
+                <jdkVersion>1.8</jdkVersion> 
                 <!-- Use your own application name -->
                 <appName>jrrc-AppDB</appName> 
                 <processTypes>
