@@ -6,7 +6,7 @@ public class App {
   public static void main(String[] args) {
     port(DaPuerto());
     get("/hola", (req, res) -> ("Hello Heroku"));
-    Conexion.getConnection();
+     DAO.DaProductos();
   }
 
   private static int DaPuerto() {
