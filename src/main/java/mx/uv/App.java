@@ -1,14 +1,18 @@
 package mx.uv;
 
 import static spark.Spark.*;
+import com.google.gson.Gson;
 
 public class App {
   /**
  * @param args
+ * 
  */
+  public static Gson gson = new Gson();
 public static void main(String[] args) {
-    port(DaPuerto());
+    port(4567);
     get("/hola", (req, res) -> ("Hello Heroku"));
+
     Conexion.getConnection();
   
     options("/*", (request, response) -> {
@@ -29,15 +33,16 @@ public static void main(String[] args) {
         before((req, res)-> res.header("Access-Control-Allow-Origin", "*"));
   
   
-  
+        get("/productos", (req, res) -> gson.toJson(DAO.DaProductos()) );
+     //DAO.DaProductos();
+
   }
 
-  private static int DaPuerto() {
+ /* private static int DaPuerto() {
     String herokuPort = System.getenv("PORT");
     if (herokuPort != null) {
       return Integer.parseInt(herokuPort);
     }
     return 4567;
-  }
-
+  }*/
 }
