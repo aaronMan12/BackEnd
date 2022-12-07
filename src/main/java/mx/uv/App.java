@@ -34,8 +34,8 @@ public static void main(String[] args) {
   
   
         get("/productos", (req, res) -> gson.toJson(DAO.DaProductos()) );
-     //DAO.DaProductos();
-
+        Producto producto1=new Producto(10,"Cloro",200,"thhps");
+        DAO.NewProducto(producto1);
   }
 
   private static int DaPuerto() {
