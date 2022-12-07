@@ -10,7 +10,7 @@ public class App {
  */
   public static Gson gson = new Gson();
 public static void main(String[] args) {
-    port(4567);
+    port(DaPuerto());
     get("/hola", (req, res) -> ("Hello Heroku"));
 
     Conexion.getConnection();
@@ -38,11 +38,11 @@ public static void main(String[] args) {
 
   }
 
- /* private static int DaPuerto() {
+  private static int DaPuerto() {
     String herokuPort = System.getenv("PORT");
     if (herokuPort != null) {
       return Integer.parseInt(herokuPort);
     }
     return 4567;
-  }*/
+  }
 }

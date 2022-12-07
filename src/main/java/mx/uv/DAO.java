@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 //import com.mysql.cj.xdevapi.Statement;
 
-public class DAO {
+public class DAO {  
     private static Conexion con1 = new Conexion();
 
     /**
@@ -54,57 +54,9 @@ public class DAO {
                 System.out.println(e);
             }
         }
-        return resultado;
+        return resultado;   }
 
+ public static void ProductoMas(){
+        
     }
 }
-////////////////////////////
-
-/*
- * public static List<Producto> dameUsuarios() {
- * Statement stm = null;
- * ResultSet rs = null;
- * Connection conn = null;
- * List<Usuario> resultado = new ArrayList<>();
- * 
- * conn = c.getConnection();
- * 
- * try {
- * String sql = "SELECT * from usuarios";
- * stm = (Statement) conn.createStatement();
- * rs = stm.executeQuery(sql);
- * while (rs.next()) {
- * Usuario u = new Usuario(rs.getString("id"), rs.getString("nombre"),
- * rs.getString("password"));
- * resultado.add(u);
- * }
- * } catch (Exception e) {
- * System.out.println(e);
- * } finally {
- * if (rs != null)
- * try {
- * rs.close();
- * } catch (SQLException e) {
- * System.out.println(e);
- * }
- * rs = null;
- * if (stm != null) {
- * try {
- * stm.close();
- * } catch (Exception e) {
- * System.out.println(e);
- * }
- * stm = null;
- * }
- * try {
- * conn.close();
- * } catch (Exception e) {
- * System.out.println(e);
- * }
- * }
- * 
- * return resultado;
- * }
- */
-
-/////////////
