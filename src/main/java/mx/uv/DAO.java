@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 //import com.mysql.cj.xdevapi.Statement;
 
-import com.google.gson.stream.MalformedJsonException;
+
 
 public class DAO {  
     private static Conexion con1 = new Conexion();
@@ -59,7 +59,8 @@ public class DAO {
                 System.out.println(e);
             }
         }
-        return resultado;   }
+        return resultado;   
+    }
 
 
         public static String NewProducto(Producto p){
@@ -97,9 +98,11 @@ public class DAO {
                 System.out.println(e);
             }
         }
-        
+
         return msj;
         }
+
+        
 
 
 }

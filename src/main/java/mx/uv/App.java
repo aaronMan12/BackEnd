@@ -1,8 +1,8 @@
 package mx.uv;
 
 import static spark.Spark.*;
-import com.google.gson.Gson;
-
+import com.google.gson.*;
+import java.util.UUID;
 public class App {
   /**
  * @param args
@@ -11,8 +11,6 @@ public class App {
   public static Gson gson = new Gson();
 public static void main(String[] args) {
     port(DaPuerto());
-    get("/hola", (req, res) -> ("Hello Heroku"));
-
     Conexion.getConnection();
   
     options("/*", (request, response) -> {
@@ -28,14 +26,29 @@ public static void main(String[] args) {
             }
             return "OK";
         });
-
-
         before((req, res)-> res.header("Access-Control-Allow-Origin", "*"));
+        get("/productos", (req, res) -> {
+          res.type("application/json");
+          return gson.toJson(DAO.DaProductos());
+        });
+        
+        /*post("/creaProductos", (req, res) -> {
+          String datos = req.body();
+          String id = UUID.randomUUID().toString();
+          Producto u = gson.fromJson(datos, Producto.class);
+          u.setID(id);
+
+          // devolver una respuesta JSON
+          JsonObject objetoJson = new JsonObject();
+          objetoJson.addProperty("status", DAO.NewProducto(u));
+          objetoJson.addProperty("id", id);
+          return objetoJson;
+      });*/
   
-  
-        get("/productos", (req, res) -> gson.toJson(DAO.DaProductos()) );
-        Producto producto1=new Producto(10,"Cloro",200,"thhps");
-        DAO.NewProducto(producto1);
+        
+        //get("/productos", (req, res) -> gson.toJson(DAO.DaProductos()) );
+        //Producto producto1=new Producto(10,"Cloro",200,"thhps");
+        //DAO.NewProducto(producto1);
   }
 
   private static int DaPuerto() {
