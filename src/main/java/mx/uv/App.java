@@ -2,6 +2,9 @@ package mx.uv;
 
 import static spark.Spark.*;
 import com.google.gson.*;
+
+import spark.Request;
+
 import java.util.UUID;
 public class App {
   /**
@@ -27,29 +30,33 @@ public static void main(String[] args) {
             return "OK";
         });
         before((req, res)-> res.header("Access-Control-Allow-Origin", "*"));
+
+
         get("/productos", (req, res) -> {
           res.type("application/json");
           return gson.toJson(DAO.DaProductos());
         });
         
-        /*post("/creaProductos", (req, res) -> {
-          String datos = req.body();
-          String id = UUID.randomUUID().toString();
+        post("/creaProductos", (req, res) -> {
+          String datos = extracted(req);
           Producto u = gson.fromJson(datos, Producto.class);
-          u.setID(id);
-
           // devolver una respuesta JSON
           JsonObject objetoJson = new JsonObject();
           objetoJson.addProperty("status", DAO.NewProducto(u));
-          objetoJson.addProperty("id", id);
+         // objetoJson.addProperty("id", id);
           return objetoJson;
-      });*/
+      });
   
         
         //get("/productos", (req, res) -> gson.toJson(DAO.DaProductos()) );
         //Producto producto1=new Producto(10,"Cloro",200,"thhps");
         //DAO.NewProducto(producto1);
   }
+
+private static String extracted(Request req) {
+  String datos = req.body();
+  return datos;
+}
 
   private static int DaPuerto() {
     String herokuPort = System.getenv("PORT");
