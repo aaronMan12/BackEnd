@@ -9,10 +9,10 @@ public class Producto {
     /**
      * 
      */
-    public Producto(int id, String nombre1, float precio1, String linck1) {
-        this.ID = id;
+    public Producto(int iD2, String nombre1, int i, String linck1) {
+        this.ID = iD2;
         this.nombre = nombre1;
-        this.precio = precio1;
+        this.precio = i;
         this.linck = linck1;
     }
 

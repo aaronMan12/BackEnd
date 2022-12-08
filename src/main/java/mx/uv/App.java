@@ -5,7 +5,7 @@ import com.google.gson.*;
 
 import spark.Request;
 
-import java.util.UUID;
+
 public class App {
   /**
  * @param args
@@ -38,13 +38,21 @@ public static void main(String[] args) {
         });
         
         post("/creaProductos", (req, res) -> {
-          String datos = extracted(req);
-          Producto u = gson.fromJson(datos, Producto.class);
+        //  String msj = extracted(req);
+         // String ID =req.queryParams("id");
+          //String nombre = req.queryParams("nombre");
+          //String precio = req.queryParams("precio");
+          //String linck =req.queryParams("link");
+        // Integer ID2 = Integer.parseInt(ID);
+          //Float  precio2=Float.parseFloat(precio ); 
+          String msj =extracted(req); 
+          Producto p = new Producto(13, "calabaza en dulce", 2334, "linck de prueba");
           // devolver una respuesta JSON
-          JsonObject objetoJson = new JsonObject();
-          objetoJson.addProperty("status", DAO.NewProducto(u));
-         // objetoJson.addProperty("id", id);
-          return objetoJson;
+          DAO.NewProducto(p);
+          //JsonObject objetoJson = new JsonObject();
+          //objetoJson.addProperty("status", DAO.NewProducto(p));
+          //objetoJson.addProperty("id", p.getID());
+          return msj;
       });
   
         
