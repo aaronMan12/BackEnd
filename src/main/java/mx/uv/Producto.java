@@ -1,19 +1,24 @@
 package mx.uv;
 
 public class Producto {
-    int ID;
+    String id;
     String nombre;
-    float precio;
-    String linck;
+    String precio;
+    String link;
 
-    /**
-     * 
-     */
-    public Producto(int iD2, String nombre1, int i, String linck1) {
-        this.ID = iD2;
+    public Producto(String iD2, String nombre1, String pre, String linck1) {
+        this.id = iD2;
         this.nombre = nombre1;
-        this.precio = i;
-        this.linck = linck1;
+        this.precio = pre;
+        this.link = linck1;
+    }
+
+    public String getID() {
+        return id;
+    }
+
+    public void setID(String iD) {
+        id = iD;
     }
 
     public String getNombre() {
@@ -24,28 +29,20 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public float getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
 
     public String getLinck() {
-        return linck;
+        return link;
     }
 
     public void setLinck(String linck) {
-        this.linck = linck;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int id2) {
-        ID = id2;
+        this.link = linck;
     }
 
 }

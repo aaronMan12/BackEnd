@@ -26,7 +26,6 @@ public class Conexion {
             System.out.println("Driver:" + e);
             System.out.println("Error de driver");
         }
-        System.out.println("conexion exitosa siiiiiii");
         return connection;
 
 

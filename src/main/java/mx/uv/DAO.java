@@ -30,8 +30,8 @@ public class DAO {
             stm = (Statement) con.createStatement();
             rs = ((java.sql.Statement) stm).executeQuery(sql);
             while (rs.next()) {
-                Producto u = new Producto(rs.getInt("ID"),
-                rs.getString("nombre"), rs.getInt("precio"),
+                Producto u = new Producto(rs.getString("ID"),
+                rs.getString("nombre"), rs.getString("precio"),
                 rs.getString("link"));
                 resultado.add(u);
             }
@@ -72,9 +72,9 @@ public class DAO {
         try {
             String sql = "INSERT INTO Productos (ID, nombre, precio, link) values (?,?,?,?)";
             stm = (PreparedStatement) con.prepareStatement(sql);
-            stm.setInt(1, p.getID());
+            stm.setString(1, p.getID());
             stm.setString(2, p.getNombre()); 
-            stm.setFloat(3, p.getPrecio());
+            stm.setString(3, p.getPrecio());
             stm.setString(4, p.getLinck());
             if (stm.executeUpdate() > 0)
                 msj = "usuario agregado";
