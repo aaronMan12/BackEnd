@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 //import com.mysql.cj.xdevapi.Statement;
 
+import javassist.compiler.ast.Variable;
+
 
 
 public class DAO {  
@@ -64,12 +66,18 @@ public class DAO {
 
 
         public static String NewProducto(Producto p){
-        String msj="Alta exitota";
+        String msj="";
         PreparedStatement stm=null;
         Connection con=null;
         con=con1.getConnection();
-        
+        String nombrever=p.getNombre();
+        String preciover=p.getPrecio();
+        String linkver=p.getLinck();
         try {
+
+            if(nombrever.length()==0||preciover.length()==0||linkver.length()==0){
+                msj="ERROR EN ALGUN CAMPO";
+            }else{
             String sql = "INSERT INTO Productos (ID, nombre, precio, link) values (?,?,?,?)";
             stm = (PreparedStatement) con.prepareStatement(sql);
             stm.setString(1, p.getID());
@@ -78,8 +86,11 @@ public class DAO {
             stm.setString(4, p.getLinck());
             if (stm.executeUpdate() > 0)
                 msj = "usuario agregado";
+
             else
                 msj = "usuario no agregado";
+            }
+            
 
         } catch (Exception e) {
             System.out.println(e);

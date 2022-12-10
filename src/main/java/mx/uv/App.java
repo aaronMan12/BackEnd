@@ -2,6 +2,8 @@ package mx.uv;
 
 import static spark.Spark.*;
 
+import java.text.BreakIterator;
+import java.text.spi.BreakIteratorProvider;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -46,12 +48,12 @@ public class App {
     });
 
     post("/creaProductos", (req, res) -> {
+      String id = UUID.randomUUID().toString();
       String datosUsu = req.body();
       final Producto p1 = gson.fromJson(datosUsu, Producto.class);
-      String id = UUID.randomUUID().toString();
       p1.setID(id);
-      DAO.NewProducto(p1);
-      return p1.getID();
+      DAO.NewProducto(p1);      
+      return DAO.NewProducto(p1); 
     });
 
 
