@@ -102,6 +102,11 @@ public class DAO {
         return msj;
         }
 
+
+
+        public static void eliminaProducto(Producto p){
+
+        }
         
 
 

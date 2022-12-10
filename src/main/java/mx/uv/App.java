@@ -4,6 +4,7 @@ import static spark.Spark.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.thymeleaf.context.Context;
 import org.thymeleaf.context.IContext;
@@ -39,33 +40,30 @@ public class App {
 
     });
     before((req, res) -> res.header("Access-Control-Allow-Origin", "*"));
-
-    get("/", (req, res) -> {
-      Map<String, Object> variables = new HashMap<>();
-      variables.put("name", "Joaquin");
-      IContext context = new Context(req.raw().getLocale(), variables);
-      String out = ThymeleafUtil.getTemplateEngine().process("../index.html", context);
-      return out;
-    });
-
     get("/productos", (req, res) -> {
       res.type("application/json");
       return gson.toJson(DAO.DaProductos());
     });
 
     post("/creaProductos", (req, res) -> {
-      String id_ = req.queryParams("id");
-      JsonObject objetoJson = new JsonObject();
       String datosUsu = req.body();
       final Producto p1 = gson.fromJson(datosUsu, Producto.class);
+      String id = UUID.randomUUID().toString();
+      p1.setID(id);
       DAO.NewProducto(p1);
       return p1.getID();
     });
 
-    // get("/productos", (req, res) -> gson.toJson(DAO.DaProductos()) );
-    // Producto producto1=new Producto(10,"Cloro",200,"thhps");
-    // DAO.NewProducto(producto1);
-  }
+
+    delete("/borrar", (req,res)->{
+
+     return "msj"; 
+    });
+
+
+    }
+
+ 
 
   private static String extracted(Request req) {
     String datos = req.body();
