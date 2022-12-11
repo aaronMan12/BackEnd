@@ -1,19 +1,8 @@
 package mx.uv;
 
 import static spark.Spark.*;
-
-import java.text.BreakIterator;
-import java.text.spi.BreakIteratorProvider;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
-
-import org.thymeleaf.context.Context;
-import org.thymeleaf.context.IContext;
-
 import com.google.gson.*;
-
-import spark.Request;
 
 public class App {
   /**
@@ -52,25 +41,34 @@ public class App {
       String datosUsu = req.body();
       final Producto p1 = gson.fromJson(datosUsu, Producto.class);
       p1.setID(id);
-      DAO.NewProducto(p1);      
-      return DAO.NewProducto(p1); 
+      DAO.NewProducto(p1);
+      return DAO.NewProducto(p1);
+    });
+
+    get("/borrarProducto", (req, res) -> {
+      //String datosUsu = req.body();
+      //final Producto p1 = gson.fromJson(datosUsu, Producto.class);
+      
+     
+      System.out.println(req.queryParams("id"));
+      
+      DAO.eliminaDAO(req.queryParams("id"));
+     
+       return "borrado";
+    });
+
+    put("/actualizarProducto",(req,res)->{
+      String datosUsu =req.body();
+      final Producto p1 = gson.fromJson(datosUsu, Producto.class);
+      DAO.actualizarDAO(p1);
+      return "actualizado";
     });
 
 
-    delete("/borrar", (req,res)->{
-
-     return "msj"; 
-    });
-
-
-    }
-
- 
-
-  private static String extracted(Request req) {
-    String datos = req.body();
-    return datos;
   }
+
+
+   
 
   private static int DaPuerto() {
     String herokuPort = System.getenv("PORT");
