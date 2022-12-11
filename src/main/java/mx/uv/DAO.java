@@ -111,14 +111,14 @@ public class DAO {
         String msj = "";
         String copia = id;
         PreparedStatement stm = null;
-        String sql = "delete from Productos where ID= ?";
+        //String sql = "delete from Productos where ID= ?";
         Connection con = null;
         con = con1.getConnection();
         try {
             stm = (PreparedStatement) con.prepareStatement("delete from Productos where ID= ?");
             stm.setString(1, copia);
             if (stm.executeUpdate() > 0) {
-                msj = "Eliminado";
+                msj = "Eliminado con exito";
             } else {
                 msj = "No se encontro al ususario";
             }

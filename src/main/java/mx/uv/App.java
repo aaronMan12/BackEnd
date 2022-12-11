@@ -46,15 +46,8 @@ public class App {
     });
 
     get("/borrarProducto", (req, res) -> {
-      //String datosUsu = req.body();
-      //final Producto p1 = gson.fromJson(datosUsu, Producto.class);
-      
-     
       System.out.println(req.queryParams("id"));
-      
-      DAO.eliminaDAO(req.queryParams("id"));
-     
-       return "borrado";
+      return DAO.eliminaDAO(req.queryParams("id"));
     });
 
     put("/actualizarProducto",(req,res)->{
