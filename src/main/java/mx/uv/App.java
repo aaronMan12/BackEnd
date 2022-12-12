@@ -4,6 +4,8 @@ import static spark.Spark.*;
 import java.util.UUID;
 import com.google.gson.*;
 
+//import spark.Spark;
+
 public class App {
   /**
    * @param args
@@ -50,21 +52,16 @@ public class App {
       return DAO.eliminaDAO(req.queryParams("id"));
     });
 
-    get("/actualizarProducto",(req,res)->{
-      String datosUsu =req.body();
+    post("/actualizarProducto", (req, res) -> {
+      String datosUsu = req.body();
       final Producto p1 = gson.fromJson(datosUsu, Producto.class);
       System.out.println(datosUsu);
-      DAO.actualizarDAO(p1);
-      return "actualizado";
+      return DAO.actualizarDAO(p1);
     });
-
 
     put(null, null);
 
   }
-
-
-   
 
   private static int DaPuerto() {
     String herokuPort = System.getenv("PORT");

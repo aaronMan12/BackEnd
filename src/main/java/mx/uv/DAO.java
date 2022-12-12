@@ -146,9 +146,11 @@ public class DAO {
     public static String actualizarDAO(Producto p) {
         String msj = "";
         PreparedStatement stm = null;
-       // String sql = "update Productos set nombre=?,precio=?,link=? where ID=?";
         Connection con = null;
         con = con1.getConnection();
+        if (p.getNombre().length() == 0 || p.getPrecio().length() == 0 || p.getLinck().length() == 0) {
+            msj = "ERROR EN ALGUN CAMPO";
+        } else {
         try {
             stm = (PreparedStatement) con.prepareStatement("update Productos set nombre=?,precio=?,link=? where ID=?");
             stm.setString(1, p.getNombre());
@@ -178,9 +180,11 @@ public class DAO {
             }
         }
 
-        return msj;
+        
     }
+return msj;
 
 
+}
 
 }
