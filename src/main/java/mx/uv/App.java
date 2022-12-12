@@ -50,13 +50,16 @@ public class App {
       return DAO.eliminaDAO(req.queryParams("id"));
     });
 
-    put("/actualizarProducto",(req,res)->{
+    get("/actualizarProducto",(req,res)->{
       String datosUsu =req.body();
       final Producto p1 = gson.fromJson(datosUsu, Producto.class);
+      System.out.println(datosUsu);
       DAO.actualizarDAO(p1);
       return "actualizado";
     });
 
+
+    put(null, null);
 
   }
 

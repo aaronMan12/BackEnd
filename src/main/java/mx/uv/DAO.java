@@ -146,11 +146,11 @@ public class DAO {
     public static String actualizarDAO(Producto p) {
         String msj = "";
         PreparedStatement stm = null;
-        String sql = "update Productos set nombre='?',precio='?',link='?' where id=?;";
+       // String sql = "update Productos set nombre=?,precio=?,link=? where ID=?";
         Connection con = null;
         con = con1.getConnection();
         try {
-            stm = (PreparedStatement) con.prepareStatement(sql);
+            stm = (PreparedStatement) con.prepareStatement("update Productos set nombre=?,precio=?,link=? where ID=?");
             stm.setString(1, p.getNombre());
             stm.setString(2, p.getPrecio());
             stm.setString(3, p.getLinck());
