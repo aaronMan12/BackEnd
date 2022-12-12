@@ -80,10 +80,10 @@ public class DAO {
                 stm.setString(3, p.getPrecio());
                 stm.setString(4, p.getLinck());
                 if (stm.executeUpdate() > 0)
-                    msj = "usuario agregado";
+                    msj = "Producto agregado";
 
                 else
-                    msj = "usuario no agregado";
+                    msj = "Producto no agregado";
             }
 
         } catch (Exception e) {
@@ -111,7 +111,7 @@ public class DAO {
         String msj = "";
         String copia = id;
         PreparedStatement stm = null;
-        //String sql = "delete from Productos where ID= ?";
+        // String sql = "delete from Productos where ID= ?";
         Connection con = null;
         con = con1.getConnection();
         try {
@@ -151,40 +151,39 @@ public class DAO {
         if (p.getNombre().length() == 0 || p.getPrecio().length() == 0 || p.getLinck().length() == 0) {
             msj = "ERROR EN ALGUN CAMPO";
         } else {
-        try {
-            stm = (PreparedStatement) con.prepareStatement("update Productos set nombre=?,precio=?,link=? where ID=?");
-            stm.setString(1, p.getNombre());
-            stm.setString(2, p.getPrecio());
-            stm.setString(3, p.getLinck());
-            stm.setString(4, p.getID());
-            if (stm.executeUpdate() > 0) {
-                msj = "Actializado";
-            } else {
-                msj = "No se pudo hacer la actualización";
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        } finally {
-            if (stm != null) {
+            try {
+                stm = (PreparedStatement) con
+                        .prepareStatement("update Productos set nombre=?,precio=?,link=? where ID=?");
+                stm.setString(1, p.getNombre());
+                stm.setString(2, p.getPrecio());
+                stm.setString(3, p.getLinck());
+                stm.setString(4, p.getID());
+                if (stm.executeUpdate() > 0) {
+                    msj = "Actializado";
+                } else {
+                    msj = "No se pudo hacer la actualización";
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            } finally {
+                if (stm != null) {
+                    try {
+                        stm.close();
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                    stm = null;
+                }
                 try {
-                    stm.close();
+                    con.close();
                 } catch (Exception e) {
                     System.out.println(e);
                 }
-                stm = null;
             }
-            try {
-                con.close();
-            } catch (Exception e) {
-                System.out.println(e);
-            }
+
         }
+        return msj;
 
-        
     }
-return msj;
-
-
-}
 
 }
