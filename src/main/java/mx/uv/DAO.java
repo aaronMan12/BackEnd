@@ -120,7 +120,7 @@ public class DAO {
             if (stm.executeUpdate() > 0) {
                 msj = "Eliminado con exito";
             } else {
-                msj = "No se encontro al ususario";
+                msj = "No se encontro al Producto";
             }
         } catch (SQLException e) {
             System.out.println(e);

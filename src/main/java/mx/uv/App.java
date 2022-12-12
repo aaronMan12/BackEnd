@@ -43,7 +43,6 @@ public class App {
       String datosUsu = req.body();
       final Producto p1 = gson.fromJson(datosUsu, Producto.class);
       p1.setID(id);
-      DAO.NewProducto(p1);
       return DAO.NewProducto(p1);
     });
 
